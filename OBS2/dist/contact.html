@@ -1,0 +1,151 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact OBS | Start Your Project</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+  </head>
+  <body data-content-page="contact">
+    <header class="site-header site-header--alt">
+      <div class="container">
+        <a href="index.html" class="logo" aria-label="OBS home">
+          <img src="images/obs-div-logo.svg" alt="OBS DIV logo" class="logo-image">
+          <span class="logo-tagline">Obsessed with Building Software</span>
+        </a>
+        <nav class="main-nav" aria-label="Primary">
+          <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu">
+            <span class="sr-only">Toggle navigation</span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          <ul class="nav-menu" id="nav-menu">
+            <li><a href="index.html#services">Services</a></li>
+            <li><a href="index.html#portfolio">Portfolio</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a class="is-active" href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="subpage-hero">
+        <div class="container">
+          <p class="eyebrow" data-content="contact-hero-eyebrow">Contact</p>
+          <h1 data-content="contact-hero-headline">Tell us about your next big launch.</h1>
+          <p data-content="contact-hero-body">Share your project goals and we will assemble the right OBS team within 14 days. We typically respond within one business day.</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container two-column contact-layout">
+          <div>
+            <h2 data-content="contact-intake-title">Project intake form</h2>
+            <form id="contact-form" class="contact-form">
+              <div class="field-group">
+                <label for="fullName">Full name</label>
+                <input type="text" id="fullName" name="fullName" required="" autocomplete="name">
+              </div>
+              <div class="field-group">
+                <label for="email">Work email</label>
+                <input type="email" id="email" name="email" required="" autocomplete="email">
+              </div>
+              <div class="field-group">
+                <label for="company">Company</label>
+                <input type="text" id="company" name="company" required="" autocomplete="organization">
+              </div>
+              <div class="field-group">
+                <label for="projectType">Project type</label>
+                <select id="projectType" name="projectType" required="">
+                  <option value="">Select an option</option>
+                  <option value="web-app">Web Application</option>
+                  <option value="mobile-app">Mobile Application</option>
+                  <option value="platform">Platform / SaaS</option>
+                  <option value="audit">Architecture Audit</option>
+                </select>
+              </div>
+              <div class="field-group">
+                <label for="budget">Estimated budget</label>
+                <select id="budget" name="budget" required="">
+                  <option value="">Select a range</option>
+                  <option value="under-50k">Under $50k</option>
+                  <option value="50-150k">$50k – $150k</option>
+                  <option value="150-300k">$150k – $300k</option>
+                  <option value="300k-plus">$300k+</option>
+                </select>
+              </div>
+              <div class="field-group">
+                <label for="timeline">Desired launch timeline</label>
+                <input type="text" id="timeline" name="timeline" placeholder="e.g. Q1 2025">
+              </div>
+              <div class="field-group">
+                <label for="message">Project overview</label>
+                <textarea id="message" name="message" rows="5" required=""></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Submit project</button>
+              <p class="form-status" aria-live="polite"></p>
+            </form>
+          </div>
+          <aside class="contact-details">
+            <h2 data-content="contact-sidebar-title">Prefer a direct conversation?</h2>
+            <p data-content="contact-sidebar-body">Email us at 12134189a@gmail.com or schedule a video consultation. We work with partners across SaaS, fintech, healthcare, and public sector organisations.</p>
+            <p>
+              <a data-content="contact-sidebar-email" href="mailto:12134189a@gmail.com">12134189a@gmail.com</a>
+            </p>
+            <div class="contact-card">
+              <h3>Global offices</h3>
+              <ul data-content="contact-sidebar-locations"><li>Aramoun, Lebanon</li></ul>
+            </div>
+            <div class="contact-card contact-card--whatsapp">
+              <h3>WhatsApp concierge</h3>
+              <p>
+                Need a quick answer? Chat with our team on WhatsApp and we’ll respond during
+                business hours in under a business day.
+              </p>
+              <a class="btn btn-whatsapp" data-whatsapp-number="+447575893448" href="https://wa.me/447575893448">
+                Message us on WhatsApp
+              </a>
+              <p class="contact-card__note">Available Monday – Friday, 9am – 6pm GMT.</p>
+            </div>
+            <div class="contact-card">
+              <h3>Project guarantees</h3>
+              <ul class="check-list" data-content="contact-sidebar-guarantees"><li>Dedicated product squad</li><li>Delivery roadmap within 10 days</li><li>Cloud-native architecture documentation</li></ul>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <img src="images/obs-div-logo.svg" alt="OBS DIV logo" class="logo-image logo-image--small">
+          <p data-content="contact-footer-blurb">OBS is a full-cycle software engineering company delivering production-ready apps and web platforms for ambitious teams worldwide.</p>
+        </div>
+        <div>
+          <h3>Explore</h3>
+          <ul data-content="contact-footer-explore"><li><a href="index.html#services">Services</a></li><li><a href="index.html#portfolio">Work</a></li><li><a href="about.html">About</a></li><li><a href="contact.html" class="is-active">Contact</a></li></ul>
+        </div>
+        <div>
+          <h3>Connect</h3>
+          <ul data-content="contact-footer-connect"><li><a href="mailto:12134189a@gmail.com">12134189a@gmail.com</a></li><li><a href="https://www.linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a></li><li><a href="https://twitter.com" target="_blank" rel="noreferrer">Twitter</a></li></ul>
+        </div>
+        <div>
+          <h3>Newsletter</h3>
+          <form class="newsletter" id="newsletter-form">
+            <label class="sr-only" for="newsletter-email">Email address</label>
+            <input type="email" id="newsletter-email" placeholder="you@company.com" required="">
+            <button type="submit">Join</button>
+            <p class="form-status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+      <p class="footer-meta">© <span id="year"></span> OBS. All rights reserved.</p>
+    </footer>
+    <script src="js/content.js" type="module"></script>
+    <script type="module" src="js/contact.js"></script>
+  
+</body></html>

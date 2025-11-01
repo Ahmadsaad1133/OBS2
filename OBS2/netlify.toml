@@ -1,0 +1,11 @@
+[build]
+  command = "npm run build:content"
+  publish = "dist"
+  # No serverless functions folder
+  # (removed to avoid warning)
+
+# Optional: redirect all routes to index.html (useful if you use React/Vite Router)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

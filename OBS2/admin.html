@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OBS Admin | Managed Content</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <style>
+      body.admin {
+        background: #0f172a;
+        color: #f8fafc;
+      }
+      .admin main {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 4rem 1.5rem;
+      }
+      .admin h1,
+      .admin h2,
+      .admin h3 {
+        color: inherit;
+      }
+      .admin-card {
+        background: rgba(15, 23, 42, 0.75);
+        border: 1px solid rgba(148, 163, 184, 0.4);
+        border-radius: 1rem;
+        padding: 2rem;
+        box-shadow: 0 20px 45px rgba(15, 23, 42, 0.35);
+        backdrop-filter: blur(12px);
+      }
+      .admin-form {
+        display: grid;
+        gap: 1.5rem;
+      }
+      .admin-form label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+      }
+      .admin-form input[type='email'],
+      .admin-form input[type='password'],
+      .admin-form textarea {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        border-radius: 0.75rem;
+        border: 1px solid rgba(148, 163, 184, 0.35);
+        background: rgba(15, 23, 42, 0.6);
+        color: inherit;
+        font: inherit;
+        resize: vertical;
+      }
+      .admin-form textarea {
+        min-height: 320px;
+      }
+      .admin-form button,
+      .admin-panel button {
+        align-self: start;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.75rem;
+        border: none;
+        background: linear-gradient(135deg, #22d3ee, #3b82f6);
+        color: #0f172a;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      .admin-panel {
+        display: grid;
+        gap: 2rem;
+      }
+      .admin-panel__header {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+      .admin-panel__status {
+        font-size: 0.95rem;
+        opacity: 0.85;
+      }
+      .admin-panel__actions {
+        display: flex;
+        gap: 0.75rem;
+      }
+      .admin-editor {
+        display: grid;
+        gap: 1rem;
+      }
+      .admin-editor__controls {
+        display: flex;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+      }
+      .admin-editor button.secondary {
+        background: rgba(148, 163, 184, 0.2);
+        color: inherit;
+      }
+      .admin-status {
+        font-size: 0.9rem;
+      }
+      .admin-status[data-variant='error'] {
+        color: #fca5a5;
+      }
+      .admin-status[data-variant='success'] {
+        color: #86efac;
+      }
+      .admin-warning {
+        padding: 1rem 1.5rem;
+        border-radius: 0.75rem;
+        background: rgba(251, 191, 36, 0.12);
+        border: 1px solid rgba(251, 191, 36, 0.35);
+        color: #fef3c7;
+      }
+    </style>
+  </head>
+  <body class="admin">
+    <main>
+      <section class="admin-card" id="auth-section">
+        <h1>OBS Content Management</h1>
+        <p data-admin-status>
+          Provide your administrator credentials to edit the live marketing copy stored in Firestore.
+        </p>
+        <div class="admin-warning" data-admin-warning hidden>
+          Firebase configuration is missing. Update <code>js/firebase.js</code> with project
+          credentials to enable the admin interface.
+        </div>
+        <form class="admin-form" id="admin-login-form">
+          <div>
+            <label for="admin-email">Email</label>
+            <input id="admin-email" name="email" type="email" autocomplete="email" required />
+          </div>
+          <div>
+            <label for="admin-password">Password</label>
+            <input
+              id="admin-password"
+              name="password"
+              type="password"
+              autocomplete="current-password"
+              required
+            />
+          </div>
+          <button type="submit">Sign in</button>
+        </form>
+      </section>
+
+      <section class="admin-card admin-panel" id="admin-panel" hidden>
+        <header class="admin-panel__header">
+          <div>
+            <h2>Managed site content</h2>
+            <p class="admin-panel__status">
+              You are editing Firestore documents in the <code>siteContent</code> collection.
+            </p>
+          </div>
+          <div class="admin-panel__actions">
+            <button type="button" class="secondary" data-action="refresh-all">Refresh all</button>
+            <button type="button" data-action="sign-out">Sign out</button>
+          </div>
+        </header>
+
+        <article class="admin-editor" data-admin-doc="home">
+          <header>
+            <h3>Home page</h3>
+            <p>Document ID: <code>siteContent/home</code></p>
+          </header>
+          <div class="admin-editor__controls">
+            <button type="button" class="secondary" data-action="refresh">Reload</button>
+            <button type="button" data-action="save">Save changes</button>
+          </div>
+          <label for="home-editor">Home JSON</label>
+          <textarea id="home-editor" spellcheck="false"></textarea>
+          <p class="admin-status" aria-live="polite"></p>
+        </article>
+
+        <article class="admin-editor" data-admin-doc="about">
+          <header>
+            <h3>About page</h3>
+            <p>Document ID: <code>siteContent/about</code></p>
+          </header>
+          <div class="admin-editor__controls">
+            <button type="button" class="secondary" data-action="refresh">Reload</button>
+            <button type="button" data-action="save">Save changes</button>
+          </div>
+          <label for="about-editor">About JSON</label>
+          <textarea id="about-editor" spellcheck="false"></textarea>
+          <p class="admin-status" aria-live="polite"></p>
+        </article>
+
+        <article class="admin-editor" data-admin-doc="contact">
+          <header>
+            <h3>Contact page</h3>
+            <p>Document ID: <code>siteContent/contact</code></p>
+          </header>
+          <div class="admin-editor__controls">
+            <button type="button" class="secondary" data-action="refresh">Reload</button>
+            <button type="button" data-action="save">Save changes</button>
+          </div>
+          <label for="contact-editor">Contact JSON</label>
+          <textarea id="contact-editor" spellcheck="false"></textarea>
+          <p class="admin-status" aria-live="polite"></p>
+        </article>
+      </section>
+    </main>
+
+    <script type="module" src="js/admin.js"></script>
+  </body>
+</html>

@@ -1,0 +1,28 @@
+{
+  "name": "obs2",
+  "version": "1.0.0",
+  "description": "This repository contains the marketing site for **OBS**, a full-cycle software engineering studio\r specialising in launch-ready applications and web platforms. The site is built with vanilla HTML,\r CSS, and modern JavaScript modules.",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run build:content",
+    "build:content": "node ./scripts/build-content.js",
+    "seed:content": "node ./scripts/seed-content.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ahmadsaad1133/OBS2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Ahmadsaad1133/OBS2/issues"
+  },
+  "homepage": "https://github.com/Ahmadsaad1133/OBS2#readme",
+  "dependencies": {
+    "firebase-admin": "^11.11.1",
+    "jsdom": "^23.2.0"
+  }
+}

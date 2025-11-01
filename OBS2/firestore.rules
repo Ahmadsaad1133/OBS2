@@ -1,0 +1,25 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /siteContent/{document} {
+      allow read: if true;
+      allow write: if request.auth != null && request.auth.token.email == 'YOUR_ADMIN_EMAIL@example.com';
+    }
+
+    match /newsletterSubscriptions/{document} {
+      allow read: if false;
+      allow create: if true;
+      allow update, delete: if false;
+    }
+
+    match /projectInquiries/{document} {
+      allow read: if false;
+      allow create: if true;
+      allow update, delete: if false;
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

@@ -1,0 +1,290 @@
+{
+  "home": {
+    "hero": {
+      "eyebrow": "Future-Ready Digital Products",
+      "headline": "We design, build, and launch complete applications for visionary teams.",
+      "body": "OBS is a full-service software engineering company based in Aramoun, Lebanon and specialising in launch-ready web applications, mobile apps, and cloud platforms. We combine research-driven design with reliable engineering to deliver products that scale.",
+      "primaryCta": {
+        "label": "Start a Project",
+        "href": "contact.html"
+      },
+      "secondaryCta": {
+        "label": "Explore Services",
+        "href": "#services"
+      },
+      "metrics": [
+        {
+          "value": "12+",
+          "label": "Years delivering enterprise solutions"
+        },
+        {
+          "value": "150+",
+          "label": "Applications launched across industries"
+        },
+        {
+          "value": "97%",
+          "label": "Client retention rate"
+        }
+      ],
+      "featuredProject": {
+        "label": "Latest Launch",
+        "title": "OBS Commerce Cloud",
+        "description": "A composable eCommerce platform engineered for hyper-growth retailers. Built with an event-driven architecture and powered by Firebase.",
+        "bullets": [
+          "Multi-tenant SaaS infrastructure",
+          "Realtime analytics dashboards",
+          "Automated CI/CD release pipeline"
+        ]
+      }
+    },
+    "services": {
+      "eyebrow": "What we do",
+      "headline": "Launch-ready software, delivered end-to-end",
+      "body": "From market validation to production deployment, OBS assembles dedicated product teams to build digital experiences your customers will love.",
+      "items": [
+        {
+          "title": "Product Discovery & UX",
+          "description": "Align on the right problem before writing a single line of code. We conduct user interviews, prototype journeys, and build design systems to accelerate delivery.",
+          "bullets": [
+            "Customer journey mapping",
+            "Design sprints",
+            "Interactive prototyping"
+          ]
+        },
+        {
+          "title": "Full-Stack Engineering",
+          "description": "Our engineers craft resilient frontends and scalable backends with TypeScript, React, Flutter, Firebase, and cloud-native services tailored to your business goals.",
+          "bullets": [
+            "Modular architecture planning",
+            "API & microservice development",
+            "Automated quality pipelines"
+          ]
+        },
+        {
+          "title": "Launch & Growth",
+          "description": "We deploy to secure cloud infrastructure, establish observability, and deliver training so your team can iterate confidently post-launch.",
+          "bullets": [
+            "Infrastructure-as-code delivery",
+            "Reliability & monitoring playbooks",
+            "Customer success enablement"
+          ]
+        }
+      ]
+    },
+    "portfolio": {
+      "eyebrow": "Case studies",
+      "headline": "Recent flagship builds",
+      "items": [
+        {
+          "badge": "Healthcare",
+          "title": "PulseLink Telemedicine Suite",
+          "description": "Multi-platform virtual care experience connecting patients and clinicians with secure messaging, video visits, and integrated EHR workflows.",
+          "bullets": [
+            "HIPAA-compliant infrastructure",
+            "Realtime vitals streaming via Firebase",
+            "Patient onboarding in under 3 minutes"
+          ]
+        },
+        {
+          "badge": "Fintech",
+          "title": "Novus Capital OS",
+          "description": "Cloud-native banking core with modular services for digital wallets, compliance, and risk analytics.",
+          "bullets": [
+            "Serverless transaction processing",
+            "Self-service partner onboarding portal",
+            "99.99% uptime across global regions"
+          ]
+        },
+        {
+          "badge": "Retail",
+          "title": "Orbit360 Experience Platform",
+          "description": "Unified shopping journey that merges in-store beacons, AR product previews, and unified loyalty programs.",
+          "bullets": [
+            "Headless commerce architecture",
+            "Predictive recommendations engine",
+            "Omnichannel analytics dashboards"
+          ]
+        }
+      ]
+    },
+    "process": {
+      "eyebrow": "How we partner",
+      "headline": "An integrated process built for velocity",
+      "body": "OBS operates as an extension of your product team. Our multidisciplinary squads bring together product strategists, designers, engineers, and DevOps specialists working in unified sprints.",
+      "cta": {
+        "label": "Learn about our culture",
+        "href": "about.html"
+      },
+      "steps": [
+        {
+          "title": "Discover",
+          "description": "Define product vision, measure success, and prototype customer journeys."
+        },
+        {
+          "title": "Build",
+          "description": "Iterate through design, development, and QA with continuous stakeholder demos."
+        },
+        {
+          "title": "Launch",
+          "description": "Deploy to production, enable observability, and train your team for sustained growth."
+        }
+      ]
+    },
+    "testimonials": null,
+    "cta": {
+      "headline": "Ready to ship your next flagship product?",
+      "body": "Tell us about your idea and we will assemble a dedicated OBS product squad within two weeks.",
+      "link": {
+        "label": "Book a consultation",
+        "href": "contact.html"
+      }
+    }
+  },
+  "about": {
+    "hero": {
+      "eyebrow": "About OBS",
+      "headline": "We are engineers, designers, and product strategists obsessed with outcomes.",
+      "body": "Since 2011 OBS has been partnering with founders, Fortune 500 enterprises, and public sector teams to build reliable software faster. We believe that the strongest products come from multidisciplinary teams, transparent collaboration, and relentless iteration."
+    },
+    "mission": {
+      "title": "Mission",
+      "body": "Empower teams to launch high-quality digital products with confidence. We do this by combining human-centered design, modern engineering practices, and DevOps excellence."
+    },
+    "values": {
+      "title": "Values",
+      "items": [
+        {
+          "label": "Integrity",
+          "description": "Build trust with transparency and ownership."
+        },
+        {
+          "label": "Craft",
+          "description": "Sweat the details that elevate experiences."
+        },
+        {
+          "label": "Momentum",
+          "description": "Deliver value in every sprint."
+        },
+        {
+          "label": "Learning",
+          "description": "Evolve with curiosity and continuous improvement."
+        }
+      ]
+    },
+    "leadership": {
+      "eyebrow": "Leadership",
+      "headline": "The team guiding every OBS engagement",
+      "members": [
+        {
+          "name": "Maya Collins",
+          "role": "Founder & CEO",
+          "bio": "Oversees product strategy and ensures every OBS engagement aligns with measurable business outcomes for our clients."
+        },
+        {
+          "name": "Leonardo Ortiz",
+          "role": "Chief Technology Officer",
+          "bio": "Leads our engineering practice with a focus on modern cloud architecture, security, and high-performing delivery teams."
+        },
+        {
+          "name": "Priya Desai",
+          "role": "Director of Product Design",
+          "bio": "Champions research-driven design and accessible interfaces that users love to adopt and recommend."
+        }
+      ]
+    },
+    "engagement": {
+      "title": "Our Engagement Model",
+      "body": "Every OBS engagement begins with discovery to de-risk assumptions and map user journeys. We then allocate a dedicated team with the right mix of strategists, UX experts, engineers, QA, and DevOps to deliver iteratively. Weekly demos, shared metrics, and transparent tooling keep stakeholders aligned."
+    },
+    "partnerships": {
+      "title": "Engineering Partnerships",
+      "body": "We are proud Firebase partners and have delivered dozens of real-time applications across industries. Our expertise spans serverless backends, automated testing, and multi-cloud deployments using Google Cloud, AWS, and Azure."
+    },
+    "careers": {
+      "title": "Join the team",
+      "body": "We are always looking for engineers, designers, and delivery leads who love solving complex product challenges. Remote-first with collaborative hubs across North America and Europe.",
+      "cta": {
+        "label": "Send your portfolio",
+        "href": "mailto:careers@obs.studio"
+      },
+      "stats": [
+        {
+          "value": "30+",
+          "label": "Product squads deployed globally"
+        },
+        {
+          "value": "42%",
+          "label": "Average velocity increase post-engagement"
+        },
+        {
+          "value": "8.7",
+          "label": "Average customer satisfaction score"
+        }
+      ]
+    }
+  },
+  "contact": {
+    "hero": {
+      "eyebrow": "Contact",
+      "headline": "Tell us about your next big launch.",
+      "body": "Share your project goals and we will assemble the right OBS team within 14 days. We typically respond within one business day."
+    },
+    "intake": {
+      "title": "Project intake form"
+    },
+    "sidebar": {
+      "title": "Prefer a direct conversation?",
+      "body": "Email us at 12134189a@gmail.com or schedule a video consultation. We work with partners across SaaS, fintech, healthcare, and public sector organisations.",
+      "emailLink": {
+        "label": "12134189a@gmail.com",
+        "href": "mailto:12134189a@gmail.com"
+      },
+      "locations": [
+        "Aramoun, Lebanon"
+      ],
+      "guarantees": [
+        "Dedicated product squad",
+        "Delivery roadmap within 10 days",
+        "Cloud-native architecture documentation"
+      ]
+    },
+    "footer": {
+      "blurb": "OBS is a full-cycle software engineering company delivering production-ready apps and web platforms for ambitious teams worldwide.",
+      "exploreLinks": [
+        {
+          "label": "Services",
+          "href": "index.html#services"
+        },
+        {
+          "label": "Work",
+          "href": "index.html#portfolio"
+        },
+        {
+          "label": "About",
+          "href": "about.html"
+        },
+        {
+          "label": "Contact",
+          "href": "contact.html",
+          "active": true
+        }
+      ],
+      "connectLinks": [
+        {
+          "label": "12134189a@gmail.com",
+          "href": "mailto:12134189a@gmail.com"
+        },
+        {
+          "label": "LinkedIn",
+          "href": "https://www.linkedin.com",
+          "external": true
+        },
+        {
+          "label": "Twitter",
+          "href": "https://twitter.com",
+          "external": true
+        }
+      ]
+    }
+  }
+}
