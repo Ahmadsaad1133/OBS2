@@ -9,7 +9,6 @@ redirects = []
 [build]
 publish = "C:\\Users\\ahmad\\OBSTeam"
 publishOrigin = "default"
-base = "C:\\Users\\ahmad\\OBSTeam"
 
 [build.environment]
 
