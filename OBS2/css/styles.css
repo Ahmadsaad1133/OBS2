@@ -92,8 +92,9 @@ img {
 }
 
 .container {
-  width: min(100% - 3rem, var(--max-width));
+  width: min(100%, var(--max-width));
   margin: 0 auto;
+  padding-inline: clamp(1.75rem, 5vw, 3rem);
 }
 section {
   position: relative;
@@ -915,7 +916,25 @@ textarea {
   .nav-toggle {
     display: flex;
   }
+  .container {
+    padding-inline: clamp(1.5rem, 6vw, 2.5rem);
+  }
 
+  section {
+    padding: clamp(4rem, 11vw, 5.5rem) 0;
+  }
+
+  h1 {
+    font-size: clamp(2.35rem, 5.8vw, 3.25rem);
+  }
+
+  h2 {
+    font-size: clamp(1.9rem, 4.6vw, 2.6rem);
+  }
+
+  h3 {
+    font-size: clamp(1.25rem, 3.5vw, 1.6rem);
+  }
   .nav-menu {
     position: absolute;
     right: 0;
@@ -966,10 +985,35 @@ textarea {
     background: radial-gradient(circle at 10% 10%, rgba(127, 90, 240, 0.3), transparent 55%),
       radial-gradient(circle at 90% 0%, rgba(44, 240, 255, 0.25), transparent 65%),
       var(--color-bg-secondary);
+    font-size: 0.95rem;
   }
 
   .container {
-    width: min(100% - 2rem, var(--max-width));
+    padding-inline: clamp(1.25rem, 7vw, 2rem);
+  }
+
+  section {
+    padding: clamp(3.25rem, 14vw, 4.5rem) 0;
+  }
+
+  h1 {
+    font-size: clamp(2.05rem, 7.8vw, 2.55rem);
+  }
+
+  h2 {
+    font-size: clamp(1.65rem, 6.5vw, 2.1rem);
+  }
+
+  h3 {
+    font-size: clamp(1.05rem, 5.5vw, 1.35rem);
+  }
+
+  .section__header p,
+  .hero__content p,
+  .card p,
+  .card ul,
+  .metrics dd {
+    font-size: 0.97rem;
   }
 
   .section::before,
@@ -990,9 +1034,41 @@ textarea {
   .metrics {
     grid-template-columns: 1fr;
   }
-
+  .hero-card,
+  .card,
   .contact-form {
-    padding: 1.6rem;
+    padding: 1.8rem;
+  }
+
+  .card-grid {
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 15px;
+  }
+
+  .container {
+    padding-inline: clamp(1rem, 8vw, 1.5rem);
+  }
+
+  h1 {
+    font-size: clamp(1.95rem, 9vw, 2.35rem);
+  }
+
+  h2 {
+    font-size: clamp(1.55rem, 7vw, 1.95rem);
+  }
+
+  h3 {
+    font-size: clamp(1rem, 6vw, 1.25rem);
+  }
+
+  .btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.85rem;
   }
 }
 
