@@ -1,6 +1,5 @@
 plugins = []
 headers = []
-redirects = []
 
 [functions]
 
@@ -23,3 +22,27 @@ publishOrigin = "default"
 [build.processing.js]
 
 [build.services]
+
+[[redirects]]
+from = "http://*"
+to = "https://www.obsteamdivlb.com/:splat"
+status = 301.0
+force = true
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "https://obsteamdivlb.com/*"
+to = "https://www.obsteamdivlb.com/:splat"
+status = 301.0
+force = true
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
