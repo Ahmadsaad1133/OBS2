@@ -1,5 +1,4 @@
 import './common.js';
-import { db, collection, addDoc, serverTimestamp, isConfigComplete } from './firebase.js';
 
 const contactForm = document.getElementById('contact-form');
 const whatsappLinks = document.querySelectorAll('[data-whatsapp-number]');
@@ -26,6 +25,7 @@ whatsappLinks.forEach((link) => {
 if (contactForm) {
   const submitButton = contactForm.querySelector('button[type="submit"]');
   const statusEl = contactForm.querySelector('.form-status');
+  const targetEmail = contactForm.dataset.mailto || '12134189a@gmail.com';
 
   const setStatus = (message, variant = 'info') => {
     if (statusEl) {
@@ -34,45 +34,56 @@ if (contactForm) {
     }
   };
 
-  if (!isConfigComplete || !db) {
-    setStatus('Connect Firebase to enable project submissions.', 'warning');
+  contactForm.addEventListener('submit', (event) => {
+    event.preventDefault();
     if (submitButton) {
       submitButton.disabled = true;
+      submitButton.textContent = 'Preparing email…';
     }
-  } else {
-    contactForm.addEventListener('submit', async (event) => {
-      event.preventDefault();
+    setStatus('Opening your email app so you can send us the project brief…');
+
+    const formData = new FormData(contactForm);
+    const fullName = formData.get('name')?.toString().trim() ?? '';
+    const email = formData.get('email')?.toString().trim() ?? '';
+    const company = formData.get('company')?.toString().trim() ?? '';
+    const message = formData.get('message')?.toString().trim() ?? '';
+
+    if (!email) {
+      setStatus('Please provide a valid email address.', 'error');
       if (submitButton) {
-        submitButton.disabled = true;
-        submitButton.textContent = 'Submitting…';
+        submitButton.disabled = false;
+        submitButton.textContent = 'Send message';
       }
-      setStatus('Sending your project request…');
+      return;
+    }
 
-      const formData = new FormData(contactForm);
-      const payload = {
-        fullName: formData.get('fullName')?.toString().trim() ?? '',
-        email: formData.get('email')?.toString().trim() ?? '',
-        company: formData.get('company')?.toString().trim() ?? '',
-        projectType: formData.get('projectType')?.toString().trim() ?? '',
-        budget: formData.get('budget')?.toString().trim() ?? '',
-        timeline: formData.get('timeline')?.toString().trim() ?? '',
-        message: formData.get('message')?.toString().trim() ?? '',
-        createdAt: serverTimestamp()
-      };
+    const subject = fullName
+      ? `New project inquiry from ${fullName}`
+      : 'New project inquiry via obs.co';
+    const lines = [
+      'Hello OBS team,',
+      '',
+      fullName ? `Name: ${fullName}` : null,
+      `Email: ${email}`,
+      company ? `Company: ${company}` : null,
+      '',
+      'Project vision:',
+      message || 'No message provided.',
+      '',
+      'Sent via obs.co contact form'
+    ].filter(Boolean);
+    const body = lines.join('\n');
 
-      try {
-        await addDoc(collection(db, 'projectInquiries'), payload);
-        contactForm.reset();
-        setStatus('Thank you! We will be in touch shortly.', 'success');
-      } catch (error) {
-        console.error('Contact submission failed', error);
-        setStatus('Something went wrong. Please try again later.', 'error');
-      } finally {
-        if (submitButton) {
-          submitButton.disabled = false;
-          submitButton.textContent = 'Submit project';
-        }
-      }
-    });
-  }
+    const mailtoUrl = new URL(`mailto:${targetEmail}`);
+    mailtoUrl.searchParams.set('subject', subject);
+    mailtoUrl.searchParams.set('body', body);
+    window.location.href = mailtoUrl.toString();
+
+    setStatus('Your email app should now be open. Send the draft to complete your request.', 'success');
+    if (submitButton) {
+      submitButton.disabled = false;
+      submitButton.textContent = 'Send message';
+    }
+    contactForm.reset();
+  });
 }

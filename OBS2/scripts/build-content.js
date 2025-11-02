@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 const fs = require('fs/promises');
 const path = require('path');
-const admin = require('firebase-admin');
 const { JSDOM } = require('jsdom');
 
 const CONTENT_PATH = path.resolve(__dirname, '..', 'content', 'siteContent.json');
@@ -11,42 +10,6 @@ const SOURCE_DIR = path.resolve(__dirname, '..');
 const loadLocalContent = async () => {
   const raw = await fs.readFile(CONTENT_PATH, 'utf8');
   return JSON.parse(raw);
-};
-
-const ensureFirebase = () => {
-  if (admin.apps.length > 0) {
-    return admin.app();
-  }
-  if (process.env.FIREBASE_SERVICE_ACCOUNT) {
-    const credentials = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
-    return admin.initializeApp({
-      credential: admin.credential.cert(credentials)
-    });
-  }
-  if (process.env.GOOGLE_APPLICATION_CREDENTIALS) {
-    return admin.initializeApp({
-      credential: admin.credential.applicationDefault()
-    });
-  }
-  throw new Error(
-    'Firestore credentials were not provided. Set FIREBASE_SERVICE_ACCOUNT or GOOGLE_APPLICATION_CREDENTIALS to run the build.'
-  );
-};
-
-const tryFetchContent = async (docId, fallback) => {
-  try {
-    ensureFirebase();
-    const snapshot = await admin.firestore().collection('siteContent').doc(docId).get();
-    if (!snapshot.exists) {
-      console.warn(`No Firestore content found for ${docId}, falling back to local JSON.`);
-      return fallback;
-    }
-    const data = snapshot.data();
-    return data ?? fallback;
-  } catch (error) {
-    console.warn(`Unable to fetch Firestore content for ${docId}. Using local JSON.`, error.message);
-    return fallback;
-  }
 };
 
 const setText = (document, selector, value) => {
@@ -308,7 +271,7 @@ const applyContactContent = (document, data) => {
 
   const intake = data.intake ?? {};
   setText(document, '[data-content="contact-intake-title"]', intake.title);
-
+  setHTML(document, '[data-content="contact-intake-body"]', intake.body);
   const sidebar = data.sidebar ?? {};
   setText(document, '[data-content="contact-sidebar-title"]', sidebar.title);
   setText(document, '[data-content="contact-sidebar-body"]', sidebar.body);
@@ -394,7 +357,7 @@ const copyRecursive = async (source, destination) => {
 };
 
 const copyStaticAssets = async () => {
-  const assets = ['css', 'js', 'images', 'favicon.ico', 'admin.html'];
+  const assets = ['css', 'js', 'images', 'favicon.ico', 'admin.html', 'content'];
   for (const asset of assets) {
     const source = path.resolve(SOURCE_DIR, asset);
     try {
@@ -411,15 +374,16 @@ const copyStaticAssets = async () => {
 const run = async () => {
   await fs.rm(OUTPUT_DIR, { recursive: true, force: true });
   await fs.mkdir(OUTPUT_DIR, { recursive: true });
-  const fallbackContent = await loadLocalContent();
-  const pages = ['home', 'about', 'contact'];
-  const outputNames = ['index', 'about', 'contact'];
-  for (let i = 0; i < pages.length; i += 1) {
-    const pageKey = pages[i];
-    const outputName = outputNames[i];
-    const fallback = fallbackContent[pageKey] ?? {};
-    const data = await tryFetchContent(pageKey, fallback);
-    await buildPage(outputName, data);
+  const content = await loadLocalContent();
+  const pages = [
+    { key: 'home', output: 'index' },
+    { key: 'about', output: 'about' },
+    { key: 'contact', output: 'contact' }
+  ];
+
+  for (const page of pages) {
+    const data = content[page.key] ?? {};
+    await buildPage(page.output, data);
   }
   await copyStaticAssets();
   console.log('Build completed. Output located in ./dist');

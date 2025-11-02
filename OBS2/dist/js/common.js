@@ -1,4 +1,4 @@
-import { db, addDoc, collection, serverTimestamp, isConfigComplete } from './firebase.js';
+
 
 const navToggle = document.querySelector('.nav-toggle');
 const navMenu = document.querySelector('.nav-menu');
@@ -23,15 +23,21 @@ const handleStatus = (form, message, variant = 'info') => {
     status.dataset.variant = variant;
   }
 };
-
+const openMailClient = (email, subject, body) => {
+  const mailtoUrl = new URL(`mailto:${email}`);
+  if (subject) {
+    mailtoUrl.searchParams.set('subject', subject);
+  }
+  if (body) {
+    mailtoUrl.searchParams.set('body', body);
+  }
+  window.location.href = mailtoUrl.toString();
+};
 const newsletterForms = document.querySelectorAll('form.newsletter');
 newsletterForms.forEach((form) => {
-  if (!isConfigComplete || !db) {
-    handleStatus(form, 'Connect Firebase to enable newsletter signups.', 'warning');
-    return;
-  }
+  const targetEmail = form.dataset.mailto || '12134189a@gmail.com';
 
-  form.addEventListener('submit', async (event) => {
+  form.addEventListener('submit', (event) => {
     event.preventDefault();
     const formData = new FormData(form);
     const email = formData.get('email') || formData.get('newsletter-email');
@@ -41,18 +47,28 @@ newsletterForms.forEach((form) => {
       return;
     }
 
-    handleStatus(form, 'Saving your subscription…');
-
-    try {
-      await addDoc(collection(db, 'newsletterSubscriptions'), {
-        email: email.toString().trim(),
-        createdAt: serverTimestamp()
-      });
-      form.reset();
-      handleStatus(form, 'Success! Welcome to the OBS newsletter.', 'success');
-    } catch (error) {
-      console.error('Newsletter submission failed', error);
-      handleStatus(form, 'Unable to save right now. Please try again later.', 'error');
+    const trimmedEmail = email.toString().trim();
+    if (!trimmedEmail) {
+      handleStatus(form, 'Please provide a valid email address.', 'error');
+      return;
     }
+    const subject = 'OBS newsletter subscription request';
+    const body = [
+      'Hello OBS team,',
+      '',
+      `Please add ${trimmedEmail} to the newsletter list.`,
+      '',
+      'Thank you!'
+    ].join('\n');
+
+    handleStatus(
+      form,
+      'Opening your email app so you can confirm the subscription request…',
+      'success'
+    );
+    openMailClient(targetEmail, subject, body);
+    form.reset();
   });
 });
+
+export { handleStatus };

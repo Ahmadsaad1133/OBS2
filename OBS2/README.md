@@ -9,34 +9,33 @@ CSS, and modern JavaScript modules.
 ```
 ├── index.html         # Landing page
 ├── about.html         # Company story and values
-├── contact.html       # Project intake form connected to Firebase
+├── contact.html       # Redirects into the unified contact flow
+├── content
+│   └── siteContent.json  # Managed copy applied to each page
 ├── css
 │   └── styles.css     # Global site styles
 └── js
-    ├── common.js      # Shared UI behaviour + newsletter submission logic
-    ├── contact.js     # Contact form Firestore integration
-    └── firebase.js    # Firebase configuration and initialisation
+    ├── common.js      # Shared UI behaviour + mailto newsletter flow
+    ├── contact.js     # Mailto-based project intake helper
+    └── content.js     # Loads managed copy from content/siteContent.json
 ```
 
-## Firebase setup
+## Managed content
 
-1. Create a Firebase project (Firestore in Native mode) and a Web App from the Firebase console.
-2. Copy the configuration snippet provided by Firebase and replace the placeholder values in
-   `js/firebase.js`.
-3. Enable Cloud Firestore in the Firebase console.
+Firestore has been removed in favour of a zero-runtime, static content workflow. All editable copy
+lives in `content/siteContent.json`. The `npm run build` task applies the JSON to each HTML page and
+copies the assets into `dist/` for deployment. You can preview the current JSON bundle in
+`admin.html`, which now offers copy/download helpers for the static file.
 
-### Required collections
+## Forms and inquiries
 
-| Collection name           | Purpose                         | Sample document fields                                  |
-| ------------------------- | ------------------------------- | ------------------------------------------------------- |
-| `newsletterSubscriptions` | Stores newsletter signups       | `email` (string), `createdAt` (Firestore serverTimestamp) |
-| `projectInquiries`        | Captures contact form projects  | `fullName`, `email`, `company`, `projectType`, `budget`, `timeline`, `message`, `createdAt` |
-
-Both forms automatically add a `createdAt` field using `serverTimestamp()` to simplify sorting in
-Firestore queries.
+Without Firestore, both the contact form and newsletter signup use simple `mailto:` fallbacks. When a
+visitor submits either form, their email client opens with a pre-populated draft addressed to
+`12134189a@gmail.com`. Sending that draft completes the request without any client-side databases or
+external SDKs.
 
 ## Local development
 
 Open `index.html` in a browser or serve the project with any static file server (for example,
-`npx serve .`). The Firebase SDK is loaded via ES module CDN URLs so no additional build tooling is
-required.
+`npx serve .`). When using the mailto workflow you may prefer to develop with a local HTTP server so
+that the browser can fetch `content/siteContent.json` without file-protocol restrictions.

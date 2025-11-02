@@ -1,10 +1,9 @@
 import './common.js';
-import { db, doc, getDoc, isConfigComplete } from './firebase.js';
 
 const pageId = document.body?.dataset?.contentPage;
 
 if (!pageId) {
-  console.warn('No data-content-page attribute found on <body>. Skipping Firestore content load.');
+  console.warn('No data-content-page attribute found on <body>. Skipping managed content hydration.');
 }
 
 const setText = (selector, value) => {
@@ -388,22 +387,23 @@ const applyContentForPage = (page, data) => {
 
 const hydrateContent = async () => {
   if (!pageId) return;
-  if (!isConfigComplete || !db) {
-    console.info('Skipping Firestore content load because Firebase is not configured.');
-    return;
-  }
 
   try {
-    const snapshot = await getDoc(doc(db, 'siteContent', pageId));
-    if (!snapshot.exists()) {
-      console.warn(`No Firestore content found for page: ${pageId}`);
+    const response = await fetch('content/siteContent.json', { cache: 'no-cache' });
+    if (!response.ok) {
+      throw new Error(`Request failed with status ${response.status}`);
+    }
+
+    const content = await response.json();
+    const data = content?.[pageId];
+    if (!data) {
+      console.warn(`No managed content found for page: ${pageId}`);
       return;
     }
 
-    const data = snapshot.data();
     applyContentForPage(pageId, data);
   } catch (error) {
-    console.error('Failed to load managed content from Firestore', error);
+    console.error('Failed to load managed content', error);
   }
 };
 
