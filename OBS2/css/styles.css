@@ -348,7 +348,13 @@ p + p {
   flex-direction: column;
   gap: 1.5rem;
 }
+.hero__content .eyebrow {
+  padding-bottom: 15px;
+}
 
+.hero__content h1 {
+  padding: 10px;
+}
 .hero__background {
   position: absolute;
   inset: 0;
